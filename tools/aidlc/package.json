@@ -21,6 +21,14 @@
     ],
     "author": "ko-hi-san",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KouheiOkazaki/ai-dlccc.git"
+    },
+    "homepage": "https://github.com/KouheiOkazaki/ai-dlccc#readme",
+    "bugs": {
+        "url": "https://github.com/KouheiOkazaki/ai-dlccc/issues"
+    },
     "files": [
         "dist",
         "templates"
