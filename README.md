@@ -1,78 +1,116 @@
-# AI-DLC Workflow Template
+# ai-dlccc
 
-AI主導の開発ライフサイクル（AI-DLC: AI-Driven Development Lifecycle）を、リポジトリ上で運用するためのテンプレートです。
+[日本語](README.ja.md) | English
 
-このテンプレートは、以下のホワイトペーパーの考え方・用語・進め方を参考にしています。
-https://prod.d13rzhkk8cj2z0.amplifyapp.com/
+[![npm version](https://img.shields.io/npm/v/ai-dlccc.svg)](https://www.npmjs.com/package/ai-dlccc)
+[![license](https://img.shields.io/npm/l/ai-dlccc.svg)](https://github.com/KouheiOkazaki/ai-dlccc/blob/main/LICENSE)
+
+**AI-DLC (AI-Driven Development Lifecycle) workflow CLI for Claude Code.**
+
+Transform AI coding agents into structured development workflows with clear phases: Inception → Construction → Operations.
+
+## Installation
+
+```bash
+npx ai-dlccc init
+```
+
+Or install globally:
+
+```bash
+npm install -g ai-dlccc
+ai-dlccc init
+```
 
 ## Quick Start
 
 ```bash
-# プロジェクトにAI-DLCテンプレートを導入
-npx aidlc init
+# Initialize with English output (default)
+npx ai-dlccc init
 
-# 日本語出力で初期化
-npx aidlc init --lang ja
+# Initialize with Japanese output
+npx ai-dlccc init --lang ja
 
-# カスタムドキュメントディレクトリ
-npx aidlc init --docs-dir docs/aidlc
+# Custom documentation directory
+npx ai-dlccc init --docs-dir docs/specs
+
+# Preview changes without writing files
+npx ai-dlccc init --dry-run
 ```
 
-詳細は [tools/aidlc/README.md](tools/aidlc/README.md) を参照してください。
-
-## 概要
-
-- **Inception**：Intent単位で要件・ストーリー・Unit分割・設計を固める
-- **Construction**：Bolt単位で設計差分→実装→単体テスト→デプロイ単位を進める
-- **Operations**：Bolt単位で運用観点（監視・切り戻し等）を整備する
-
-成果物は `aidlc-docs/` と `UNITS/` 配下に配置します。
-
-## 使い方
-
-### 開始
-
-```text
-/aidlc-start "やりたいこと"
-```
-
-例:
-```text
-/aidlc-start "ログイン画面のUIを修正する"
-```
-
-オーケストレータが既存成果物を調査し、Intent / Unit / Bolt のどれで進めるべきかを推定したうえで、askQuestionToolで確認します。
-
-### 再開
-
-```text
-/aidlc-resume
-```
-
-中断した作業を再開します。既存成果物を確認し、未完了の箇所を整理します。
-
-## ディレクトリ構成
+## What Gets Generated
 
 ```
 your-project/
 ├── .aidlc/
-│   └── config.json           # 設定（言語、ドキュメントディレクトリなど）
+│   └── config.json           # Configuration (language, paths)
 ├── .claude/
-│   ├── CLAUDE.md             # Claude Code共通ルール
-│   ├── agents/               # AI-DLCエージェント定義
-│   └── commands/             # スラッシュコマンド
-└── aidlc-docs/               # ドキュメントテンプレート
-    ├── requirements/         # Intent/Requirements/NFR
-    ├── design/               # Domain/Logical/Component Design
-    ├── plans/                # Inception/Construction/Operations Plan
-    ├── story-artifacts/      # User Stories
-    └── UNITS/                # Unit/Bolt成果物
+│   ├── CLAUDE.md             # AI rules and guidelines
+│   ├── agents/               # Specialized AI agents
+│   │   ├── aidlc-orchestrator.md
+│   │   ├── aidlc-architect.md
+│   │   ├── aidlc-builder.md
+│   │   ├── aidlc-planner.md
+│   │   ├── aidlc-reviewer.md
+│   │   └── aidlc-tester.md
+│   └── commands/
+│       ├── aidlc-start.md
+│       └── aidlc-resume.md
+└── aidlc-docs/               # Document templates
+    ├── requirements/
+    ├── design/
+    ├── plans/
+    ├── story-artifacts/
+    └── UNITS/
 ```
 
-## 参考
+## Usage in Claude Code
 
-- [AI-DLC Whitepaper](https://prod.d13rzhkk8cj2z0.amplifyapp.com/)
-- [cc-sdd](https://github.com/gotalab/cc-sdd) - Spec-driven development for Claude Code
+### Start a New Workflow
+
+```
+/aidlc-start "What you want to build"
+```
+
+The orchestrator will:
+1. Search existing artifacts for related work
+2. Ask clarifying questions (Intent/Unit/Bolt scope)
+3. Guide you through the appropriate phase
+
+### Resume Interrupted Work
+
+```
+/aidlc-resume
+```
+
+## CLI Options
+
+| Option | Short | Default | Description |
+|--------|-------|---------|-------------|
+| `--agent` | `-a` | `claude-code` | Target agent |
+| `--target` | `-t` | `.` | Target directory |
+| `--lang` | `-l` | `en` | Output language (`en`, `ja`) |
+| `--docs-dir` | `-d` | `aidlc-docs` | Documentation directory |
+| `--force` | `-f` | `false` | Overwrite existing files |
+| `--dry-run` | `-n` | `false` | Preview changes |
+
+## AI-DLC Phases
+
+| Phase | Scope | Outputs |
+|-------|-------|---------|
+| **Inception** | Per Intent | Requirements, NFR, User Stories, Units, Design |
+| **Construction** | Per Bolt | Design diff, Implementation, Tests, Deployment Units |
+| **Operations** | Per Bolt | Monitoring, Runbooks, Rollback procedures |
+
+## Language Support
+
+The `--lang` option controls the language of AI-generated outputs. Templates are language-agnostic; the AI reads `.aidlc/config.json` and generates content in the specified language.
+
+Supported: `en` (English), `ja` (Japanese)
+
+## References
+
+- [AI-DLC Whitepaper](https://prod.d13rzhkk8cj2z0.amplifyapp.com/) - Methodology and concepts
 
 ## License
 
