@@ -1,0 +1,35 @@
+{
+    "name": "aidlc",
+    "version": "0.1.0",
+    "description": "AI-DLC (AI-Driven Development Lifecycle) workflow CLI for Claude Code and Cursor",
+    "type": "module",
+    "main": "dist/cli.js",
+    "bin": {
+        "aidlc": "dist/cli.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "prepublishOnly": "npm run build"
+    },
+    "keywords": [
+        "ai-dlc",
+        "claude-code",
+        "cursor",
+        "ai-workflow",
+        "spec-driven-development"
+    ],
+    "author": "",
+    "license": "MIT",
+    "files": [
+        "dist",
+        "templates"
+    ],
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "typescript": "^5.0.0"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}
