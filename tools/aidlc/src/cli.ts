@@ -75,10 +75,10 @@ function parseArgs(args: string[]): { command: string; options: Partial<InitOpti
 
 function showHelp(): void {
   console.log(`
-aidlc - AI-DLC Workflow CLI
+ai-dlccc - AI-DLC Workflow CLI for Claude Code
 
 Usage:
-  aidlc init [options]    Initialize AI-DLC templates in your project
+  ai-dlccc init [options]    Initialize AI-DLC templates in your project
 
 Options:
   --agent, -a <agent>     Target agent (default: claude-code)
@@ -93,10 +93,10 @@ Options:
   --version, -v           Show version
 
 Examples:
-  aidlc init                          # Initialize with defaults
-  aidlc init --lang ja                # Initialize with Japanese output
-  aidlc init --docs-dir docs/aidlc    # Custom docs directory
-  aidlc init --dry-run                # Preview changes
+  ai-dlccc init                          # Initialize with defaults
+  ai-dlccc init --lang ja                # Initialize with Japanese output
+  ai-dlccc init --docs-dir docs/specs    # Custom docs directory
+  ai-dlccc init --dry-run                # Preview changes
 `);
 }
 
@@ -104,9 +104,9 @@ function showVersion(): void {
   const packageJsonPath = join(__dirname, '..', 'package.json');
   if (existsSync(packageJsonPath)) {
     const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
-    console.log(`aidlc v${packageJson.version}`);
+    console.log(`ai-dlccc v${packageJson.version}`);
   } else {
-    console.log('aidlc v0.1.0');
+    console.log('ai-dlccc v0.1.0');
   }
 }
 
@@ -313,7 +313,7 @@ function main(): void {
         showHelp();
       } else {
         console.error(`Unknown command: ${args[0]}`);
-        console.error('Run "aidlc --help" for usage information.');
+        console.error('Run "ai-dlccc --help" for usage information.');
         process.exit(1);
       }
   }

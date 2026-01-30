@@ -1,11 +1,11 @@
 {
-    "name": "aidlc",
+    "name": "ai-dlccc",
     "version": "0.1.0",
     "description": "AI-DLC (AI-Driven Development Lifecycle) workflow CLI for Claude Code and Cursor",
     "type": "module",
     "main": "dist/cli.js",
     "bin": {
-        "aidlc": "dist/cli.js"
+        "ai-dlccc": "dist/cli.js"
     },
     "scripts": {
         "build": "tsc",
@@ -19,7 +19,7 @@
         "ai-workflow",
         "spec-driven-development"
     ],
-    "author": "",
+    "author": "ko-hi-san",
     "license": "MIT",
     "files": [
         "dist",
