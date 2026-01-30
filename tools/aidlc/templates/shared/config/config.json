@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "language": "{{LANG_CODE}}",
+  "docs_dir": "{{DOCS_DIR}}",
+  "created_at": "{{TIMESTAMP}}",
+  "agent": "{{AGENT}}"
+}

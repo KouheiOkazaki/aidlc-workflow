@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "artifacts": [
+    {
+      "id": "aidlc_config",
+      "source": {
+        "type": "templateFile",
+        "from": "shared/config/config.json",
+        "toDir": ".aidlc",
+        "rename": "config.json"
+      },
+      "when": { "agent": "claude-code" }
+    },
+    {
+      "id": "claude_dotfiles",
+      "source": {
+        "type": "templateDir",
+        "fromDir": "dotfiles/claude-code",
+        "toDir": ".claude"
+      },
+      "when": { "agent": "claude-code" }
+    },
+    {
+      "id": "aidlc_docs",
+      "source": {
+        "type": "templateDir",
+        "fromDir": "shared/aidlc-docs",
+        "toDir": "{{DOCS_DIR}}"
+      },
+      "when": { "agent": "claude-code" }
+    }
+  ]
+}
